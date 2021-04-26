@@ -1,5 +1,4 @@
 <template>
-    //Corpo do projeto
     <h1>Hello World</h1>
 </template>
 
@@ -11,5 +10,6 @@
 </script>
 
 <style>
-    //Estilo
+    //estilo
+
 </style>
