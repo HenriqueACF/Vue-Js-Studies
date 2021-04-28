@@ -8,7 +8,7 @@
 <script>
 import ModalFactory from './components/ModalFactory'
 
-export default{
-  components:{ModalFactory}
+export default {
+  components: { ModalFactory }
 }
 </script>
