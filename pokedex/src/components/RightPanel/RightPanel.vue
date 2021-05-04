@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import RightPanelContent from './RightPanelContent'
+
     export default {
         name:'RightPanel',
         components:{

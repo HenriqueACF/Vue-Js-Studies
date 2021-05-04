@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import LeftPanelContent from './LeftPanelContent'
+
     export default {
         name:'LeftPanel',
         components:{
