@@ -3,8 +3,7 @@
     <TopPanel/>
     <LeftPanel class="pokedex--left"/>
     <Divider/>
-    <!--
-    <RightPanel class="pokedex--right"/> -->
+    <RightPanel class="pokedex--right"/>
   </div>
 </template>
 
