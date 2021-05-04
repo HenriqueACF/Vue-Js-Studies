@@ -26,6 +26,7 @@
 			transform: rotateY(-180deg);
 			padding-top: 50px;
 		}
+
 		&__label {
 			display: flex;
 			flex-direction: column;
@@ -38,6 +39,7 @@
 				padding: 12px 24px 24px;
 			}
 		}
+
 		&__input {
 			color: inherit;
 			background: transparent;
@@ -48,6 +50,7 @@
 				padding: 8px;
 			}
 		}
+        
 		&__button {
 			align-self: flex-end;
 			width: 120px;
