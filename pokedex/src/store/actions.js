@@ -60,7 +60,7 @@ export default {
 
         if(!name){
             resetList();
-            return
+            return;
         }
 
         try{
@@ -68,7 +68,7 @@ export default {
             setIsSearching(false);
             setIsPokemonSearch(false);
 
-            const pokemon = state.list.find(info => info.name.toLowerCase() === name.toLowerCase());
+            const pokemon = state.tmpList.find(info => info.name.toLowerCase() === name.toLowerCase());
 
             if(pokemon){
                 setPokemonSearched(pokemon);
