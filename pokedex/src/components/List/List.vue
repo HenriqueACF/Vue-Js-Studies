@@ -4,6 +4,7 @@
     <p v-else-if="hasSearchError" class="list--message">Não foi possivel encontras este Pokemon</p>
 
     <ListItem v-else-if="isPokemonSearch" v-bind="pokemonsList[0]"/>
+    <PokemonDescription v-else-if="pokemonId" :id="pokemonId"/>
     <template v-else>
         <ListItem v-for="pokemon in pokemonsList" :key="pokemon.id" v-bind="pokemon"/>
         <infinite-loading @infinite="infiniteHandler"/>
@@ -14,11 +15,13 @@
 <script>
 import ListItem from './ListItem.vue';
 import {state, getters, actions} from '@/store';
+import PokemonDescription from '@/components/PokemonDescription/PokemonDescription.vue';
 
     export default {
         name:'List',
         components:{
-            ListItem
+            ListItem,
+            PokemonDescription
         },
         computed:{
             pokemonsList(){
@@ -35,6 +38,10 @@ import {state, getters, actions} from '@/store';
 
             hasSearchError(){
                 return state.searchHasError;
+            },
+
+            pokemonId(){
+                return state.pokemonId
             }
         },
 
