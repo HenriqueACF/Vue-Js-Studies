@@ -28,7 +28,7 @@
 <script>
 import Painel from '../shared/painel/Painel';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva';
-import Botao from '../shared/botão/Botão';
+import Botao from '../shared/botão/Botao';
 
   export default{
     components:{
