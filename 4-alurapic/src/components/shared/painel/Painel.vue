@@ -56,4 +56,8 @@
   .painel-fade-leave-active{
       transition: 2s;
   }
+
+  .painel-conteudo{
+    overflow: hidden;
+  }
 </style>
