@@ -1,85 +1,83 @@
-import PokeAPI from '@/services/pokedex';
+import PokeAPI from '@/services/pokeapi';
+
 import state from './state';
 import mutations from './mutations';
 
 export default {
-    async getPokemons(){
-        const {
-            setList,
-            setIsPokemonSearch,
-            setListHasError,
-            setListHasNext,
-            setListHasCompleted,
-            updateOffset,
-        } = mutations;
+	async getPokemons() {
+		const {
+			setList,
+			setIsPokemonSearch,
+			setListHasError,
+			setListHasNext,
+			setListHasCompleted,
+			updateOffset,
+		} = mutations;
 
-        try{
-            setIsPokemonSearch(false);
-            setListHasError(false);
+		try {
+			setIsPokemonSearch(false);
+			setListHasError(false);
 
-            const pokemonsList = await PokeAPI.getPokemons({limit:state.limit, offset: state.offset});
+			const pokemonsList = await PokeAPI.getPokemons({ limit: state.limit, offset: state.offset });
 
-            if(pokemonsList?.results?.length){
-                const prepareInfo = pokemonsList.results.map(item => PokeAPI.getPokemonsByName(item.name));
-                const pokemonsInfo = await Promise.all(prepareInfo);
+			if (pokemonsList?.results?.length) {
+				const prepareInfo = pokemonsList.results.map(item => PokeAPI.getPokemonByName(item.name));
+				const pokemonsInfo = await Promise.all(prepareInfo);
 
-                setList(pokemonsInfo);
-            }
+				setList(pokemonsInfo);
+			}
 
-            if(pokemonsList?.next){
-                setListHasNext(true);
-                updateOffset();
-            }else{
-                setListHasNext(false);
-                setListHasCompleted(true);
-            }
+			if (pokemonsList?.next) {
+				setListHasNext(true);
+				updateOffset();
+			} else {
+				setListHasNext(false);
+				setListHasCompleted(true);
+			}
+		} catch (error) {
+			setListHasError(true);
+		}
+	},
+	async getPokemonByName(name) {
+		const { setPokemonSearched } = mutations;
 
-        }catch(error){
-            setListHasError(true)
-        }
-    },
+		const pokemon = await PokeAPI.getPokemonByName(name);
 
-    async getPokemonsByName(name){
-        const {setPokemonSearched} = mutations;
+		if (pokemon) {
+			setPokemonSearched(pokemon);
+		}
+	},
+	async searchPokemon(name) {
+		const {
+			setIsPokemonSearch,
+			setIsSearching,
+			setPokemonSearched,
+			setSearchHasError,
+			resetList,
+		} = mutations;
 
-        const pokemon = await PokeAPI.getPokemonsByName(name);
+		if (!name) {
+			resetList();
+			return;
+		}
 
-        if(pokemn){
-            setPokemonSearched(pokemon)
-        }
-    },
+		try {
+			setSearchHasError(false);
+			setIsSearching(true);
+			setIsPokemonSearch(true);
 
-    async searchPokemon(name){
-        const {
-            setIsPokemonSearch,
-            setIsSearching,
-            setPokemonSearched,
-            setSearchHasError,
-            resetList,
-        } = mutations;
+			const pokemon = state.tmpList.find(info => info.name.toLowerCase() === name.toLowerCase());
 
-        if(!name){
-            resetList();
-            return;
-        }
+			if (pokemon) {
+				setPokemonSearched(pokemon);
+				return;
+			}
 
-        try{
-            setSearchHasError(false);
-            setIsSearching(false);
-            setIsPokemonSearch(false);
-
-            const pokemon = state.tmpList.find(info => info.name.toLowerCase() === name.toLowerCase());
-
-            if(pokemon){
-                setPokemonSearched(pokemon);
-                return;
-            }
-
-            await this.getPokemonsByName(name);
-        }catch(error){
-            setSearchHasError(true);
-        }finally{
-            setIsSearching(false);
-        }
-    }
-}
+			await this.getPokemonByName(name);
+		} catch (error) {
+			setSearchHasError(true);
+		} finally {
+			setIsSearching(false);
+		}
+	},
+};

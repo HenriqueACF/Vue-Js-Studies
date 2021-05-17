@@ -1,8 +1,8 @@
+import { parsePokemonInfo } from '@/utils';
 import state from './state';
-import {parsePokemonInfo} from '@/utils'
 
-export default{
-    get pokemonsInfo(){
-        return state.list.map(parsePokemonInfo)
-    }
-}
+export default {
+	get pokemonsInfo() {
+		return state.list.map(parsePokemonInfo);
+	},
+};
