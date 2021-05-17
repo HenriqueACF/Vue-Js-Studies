@@ -1,1 +1,1 @@
-{"usuarios":[{"id":1,"email":"vinicios@alura.com.br","senha":"123456","nome":"Vinicios"},{"id":2,"email":"vinicios@alura.com.br","senha":"123","nome":"vinicios"},{"id":3,"email":"henrique@teste.com"}]}
+{"usuarios":[{"id":1,"email":"vinicios@alura.com.br","senha":"123456","nome":"Vinicios"},{"id":2,"email":"vinicios@alura.com.br","senha":"123","nome":"vinicios"},{"id":3,"email":"henrique@teste.com"},{"id":4,"email":"henrique@teste123.com"},{"id":5,"email":"henrique@teste123.com","senha":"1234"},{"id":6,"email":"henrique@teste.com","senha":"1234"}]}
