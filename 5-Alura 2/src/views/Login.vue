@@ -11,6 +11,7 @@
         <label for="password">Senha</label>
         <input type="password" class="form-control" v-model="usuario.password"/>
       </div>
+      <p class="alert alert-danger" v-if="mensagemErro">{{mensagemErro}}</p>
       <button type="submit" class="btn btn-primary brn-block">Logar</button>
       <router-link :to="{name: 'novo.usuario'}">
         não possui um cadastro, cadastre-se aqui!
@@ -24,16 +25,23 @@
   export default{
     data(){
       return{
-        usuario:{
-
-        }
+        usuario:{},
+        mensagemErro:''
       }
     },
 
     methods:{
       efetuarLogin() {
         this.$store.dispatch('efetuarLogin', this.usuario)
-          .then(()=> this.$router.push({name: 'gerentes'}))
+          .then(()=>{
+            this.$router.push({name:'gerentes'})
+            this.mensagemErro = ''
+          })
+          .catch(erro =>{
+            if(erro.request.status === 4001){
+              this.mensagemErro = 'Login ou Senha invalidos'
+            }
+          })
           //.$http
           // .post("auth/login", this.usuario)
           // .then(response => {
