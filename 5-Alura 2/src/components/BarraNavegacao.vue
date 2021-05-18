@@ -6,19 +6,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <BarraNavegacaoQuandoLogado v-if="usuarioestaLogado"/>
-      <BarraNavegacaoQuandoDeslogadoLogado v-else/>
+      <BarraNavegacaoQuandoDeslogado v-else/>
     </div>
   </nav>
 </template>
 
 <script>
 import BarraNavegacaoQuandoLogado from './BarraNavegacaoQuandoLogado'
-import BarraNavegacaoQuandoDeslogadoLogado from 'BarraNavegacaoQuandoDeslogadoLogado'
+import BarraNavegacaoQuandoDeslogado from './BarraNavegacaoQuandoDeslogado'
 
 export default{
   components:{
     BarraNavegacaoQuandoLogado,
-    BarraNavegacaoQuandoDeslogadoLogado
+    BarraNavegacaoQuandoDeslogado
   },
 
   computed:{
