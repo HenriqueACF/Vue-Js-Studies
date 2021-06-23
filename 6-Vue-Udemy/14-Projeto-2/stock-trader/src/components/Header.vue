@@ -28,7 +28,7 @@
 
             <v-layout align-center>
               <span class="text-uppercase grey==text text--darken-2">
-                Saldo:{{funds}}
+                Saldo:{{funds | currency}}
               </span>
             </v-layout>
 
@@ -37,10 +37,18 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   computed:{
     funds(){
       return this.$store.getters.funds
+    }
+  },
+  methods:{
+    ...mapActions(['randomizeStocks']),
+    endDay(){
+      this.randomizeStocks()
     }
   }
 }
