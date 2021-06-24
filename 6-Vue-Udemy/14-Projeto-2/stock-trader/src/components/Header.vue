@@ -46,9 +46,16 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['randomizeStocks']),
+    ...mapActions(['randomizeStocks', 'loadData']),
     endDay(){
       this.randomizeStocks()
+    },
+    saveData(){
+      const {funds, stockPortifolio, stocks} = this.$store.getters
+      this.$http.put('data.json', {funds, stockPortifolio, stocks})
+    },
+    loadDataLocal(){
+      this.loadData()
     }
   }
 }
