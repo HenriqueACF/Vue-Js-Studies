@@ -59,7 +59,7 @@ export default {
 
 <style lang="postcss" scoped>
 .header {
-  @apply bg-brand-main w-full flex justify-center;
+  @apply  w-full flex justify-center;
   height: 700px;
 }
 

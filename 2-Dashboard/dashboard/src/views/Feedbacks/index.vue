@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="flex justify-center w-full h-28 bg-brand-main">
     <header-logged />
   </div>
@@ -55,6 +56,7 @@
         <feedback-card-loading v-if="state.isLoadingMoreFeedbacks" />
       </div>
     </div>
+  </div>
   </div>
 </template>
 
